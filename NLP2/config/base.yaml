@@ -1,0 +1,29 @@
+FNN:
+  vocab_size : 1024
+  embedding_dim : 16
+  n : 9
+  hidden_size : 64
+  lr : 1.0e-3
+  batch_size : 512
+  epochs : 100
+  layer : 3
+
+RNN:
+  vocab_size : 1024
+  embedding_dim : 16
+  n : 9
+  hidden_size : 64
+  lr : 1.0e-3
+  batch_size : 512
+  epochs : 100
+  layer : 3
+
+LSTM:
+  vocab_size : 1024
+  embedding_dim : 16
+  n : 9
+  hidden_size : 64
+  lr : 1.0e-3
+  batch_size : 512
+  epochs : 100
+  layer : 3
