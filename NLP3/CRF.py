@@ -1,6 +1,6 @@
 import sklearn_crfsuite
 import os
-from joblib import dump,load
+from joblib import dump, load
 
 
 class CRFsModel:

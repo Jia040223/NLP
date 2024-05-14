@@ -1,0 +1,10 @@
+lr : 1.0e-3
+batch_size : 4
+epochs : 5
+label2id :
+    "0": 0
+    "B": 1
+    "M": 2
+    "E": 3
+    "S": 4
+
