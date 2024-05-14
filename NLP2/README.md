@@ -617,7 +617,7 @@ top 10 similar words in LSTM：
 ```
 
 注：带有*号的文件为程序运行的结果，由于助教表示不要提交数据集，所以部分文件没有提交，如果需要，可以去
-[我的github仓库](https://github.com/Jia040223/NLP)：https://github.com/Jia040223/NLP上下载。
+[我的github仓库](https://github.com/Jia040223/NLP)：https://github.com/Jia040223/NLP 上下载。
 
 
 ## 附录
