@@ -6,7 +6,7 @@ import os
 
 
 def collate_fn(batch_data, pad_token_id=0, pad_token_type_id=0, pad_label_id=0):
-    input_ids_list, token_type_ids_list, label_list = [], [], []
+    input_ids_list, token_type_ids_list, attention_mask_list, label_list = [], [], [], []
     max_len = 0
     for input_ids, token_type_ids, labels in batch_data:
         input_ids_list.append(input_ids)
@@ -20,8 +20,9 @@ def collate_fn(batch_data, pad_token_id=0, pad_token_type_id=0, pad_label_id=0):
         input_ids_list[i] = input_ids_list[i] + [pad_token_id] * (max_len - cur_len)
         token_type_ids_list[i] = token_type_ids_list[i] + [pad_token_type_id] * (max_len - cur_len)
         label_list[i] = label_list[i] + [pad_label_id] * (max_len - cur_len)
+        attention_mask_list.append([1] * cur_len + [0] * (max_len - cur_len))
 
-    return torch.tensor(input_ids_list), torch.tensor(token_type_ids_list), torch.tensor(label_list)
+    return torch.tensor(input_ids_list), torch.tensor(token_type_ids_list), torch.tensor(label_list), torch.tensor(attention_mask_list)
 
 def get_train_valid_sampler(trainset, valid=0.1):
     size = len(trainset)

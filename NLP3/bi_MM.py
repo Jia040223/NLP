@@ -118,6 +118,11 @@ if __name__ == "__main__":
         bimm = BiMM(file_name=data_path)
         bimm.save_dictionary(dic_path)
 
-    sentence = "北京大学生爱喝进口红酒"
-
-    print(bimm.segment(sentence))
+    texts = ["党中央和国务院高度重视高校毕业生等青年就业创业工作。要深入学习贯彻总书记的重要指示精神，更加突出就业优先导向，千方百计促进高校毕业生就业，确保青年就业形势总体稳定。",
+             "好久不见！今天天气真好，早饭准备吃什么呀？",
+             "我特别喜欢去北京的天安门和颐和园进行游玩",
+             "中国人为了实现自己的梦想",
+             "《原神》收入大涨，腾讯、网易、米哈游位列中国手游发行商全球收入前三"]
+    for text in texts:
+        words = bimm.segment(text)
+        print("/".join(words))

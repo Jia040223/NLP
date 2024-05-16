@@ -53,7 +53,7 @@ class Bert_Dataset(Data.Dataset):
                     line_label.append('S')
                 else:
                     line_label.append('B')
-                    for char in word[1:-1]:
+                    for _ in word[1:-1]:
                         line_label.append('M')
                     line_label.append('E')
 

@@ -144,16 +144,24 @@ class CRFsModel:
         predict_result = []
         for text, label in zip(texts, labels):
             words = []
-            word = ''
-            for char, label in zip(text, label):
-                if label in ['/B', '/S']:
+            word = []
+            for token, label in zip(text, label):
+                if label == '/B':
                     if word:
-                        words.append(word)
-                    word = char
+                        words.append(''.join(word))
+                        word = []
+                    word.append(token)
+                elif label == '/M':
+                    word.append(token)
+                elif label == '/E':
+                    word.append(token)
+                    words.append(''.join(word))
+                    word = []
                 else:
-                    word += char
-            if word:
-                words.append(word)
+                    if word:
+                        words.append(''.join(word))
+                        word = []
+                    words.append(token)
 
             predict_result.append(words)
 
@@ -176,6 +184,11 @@ if __name__ == "__main__":
         crf.train()
         crf.save_model("./checkpoint/crf_model.joblib")
 
-    text = "差不多得了，屁大点事都要拐上原神，原神一没招你惹你，二没干伤天害理的事情，到底怎么你了让你一直无脑抹黑，米哈游每天费尽心思的文化输出弘扬中国文化，你这种喷子只会在网上敲键盘诋毁良心公司，中国游戏的未来就是被你这种人毁掉的。"
-    words = crf.segment(text)
-    print(words)
+    texts = ["党中央和国务院高度重视高校毕业生等青年就业创业工作。要深入学习贯彻总书记的重要指示精神，更加突出就业优先导向，千方百计促进高校毕业生就业，确保青年就业形势总体稳定。",
+             "好久不见！今天天气真好，早饭准备吃什么呀？",
+             "我特别喜欢去北京的天安门和颐和园进行游玩",
+             "中国人为了实现自己的梦想",
+             "《原神》收入大涨，腾讯、网易、米哈游位列中国手游发行商全球收入前三"]
+    for text in texts:
+        words = crf.segment(text)
+        print("/".join(words[0]))
