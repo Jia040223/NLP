@@ -223,7 +223,7 @@ class Model_Pipline():
         return results
 
     def load_model(self, load_path=None):
-        current_id = 0
+        return_id = 0
         if load_path is not None:
             self.model.load_state_dict(torch.load(load_path))
         else:
@@ -242,11 +242,12 @@ class Model_Pipline():
             if latest_pth is not None:
                 print("load model from checkpoint/" + latest_pth)
                 self.model.load_state_dict(torch.load("checkpoint/" + latest_pth))
+                return_id = int(latest_pth.split("-")[-1].split(".")[0])
 
-        return current_id
+        return return_id
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description='The setting of different models')
+    parser = argparse.ArgumentParser(description='The setting of bert models')
     parser.add_argument('--train', type=str, default=True, help='train or not')
     parser.add_argument('--config', type=str, default="./config/base.yaml", help='config file')
     parser.add_argument('--device', type=str, default="cuda", help='the device to train or test the model')
